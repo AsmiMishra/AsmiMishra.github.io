@@ -79,7 +79,28 @@
   section { padding: 64px 0; border-bottom: 1px solid var(--card-border); }
   section:last-of-type { border-bottom: none; }
 
-  .hero { padding: 88px 0 64px; border-bottom: 1px solid var(--card-border); }
+  .hero {
+    padding: 88px 0 64px;
+    border-bottom: 1px solid var(--card-border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 12% 15%, rgba(63, 219, 110, 0.10), transparent 42%),
+      radial-gradient(circle at 88% 8%, rgba(91, 211, 221, 0.08), transparent 46%),
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: auto, auto, 42px 42px, 42px 42px;
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent 85%);
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero > * { position: relative; z-index: 1; }
   .prompt {
     font-family: var(--mono);
     color: var(--text-faint);
@@ -142,8 +163,99 @@
   }
   h2.section-title .num { color: var(--green); font-size: 0.95rem; }
   h2.section-title .dot { color: var(--text-faint); }
+  h2.section-title .icon {
+    color: var(--green);
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+  h2.section-title .icon svg { width: 100%; height: 100%; }
 
   p.lead { color: var(--text-dim); max-width: 720px; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 34px;
+  }
+  @media (max-width: 640px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
+  .stat-tile {
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    border-radius: 10px;
+    padding: 16px 16px;
+  }
+  .stat-value {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #f2f5f8;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+  }
+
+  .chart-card { padding: 24px 26px 16px; }
+  .chart-title {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin: 0 0 16px;
+  }
+  .chart-title .val { color: var(--green); font-weight: 600; }
+  .chart-wrap { position: relative; }
+  .gpa-chart { width: 100%; height: auto; overflow: visible; display: block; }
+  .gpa-chart .grid-line { stroke: var(--card-border); stroke-width: 1; }
+  .gpa-chart .axis-label { fill: var(--text-faint); font-family: var(--mono); font-size: 10px; }
+  .gpa-chart .term-label { fill: var(--text-faint); font-family: var(--mono); font-size: 9px; }
+  .gpa-chart .val-label { fill: var(--text); font-family: var(--mono); font-size: 11px; font-weight: 600; }
+  .gpa-chart .line { fill: none; stroke: var(--green); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .gpa-chart .dot { fill: var(--green); stroke: var(--card); stroke-width: 2; }
+  .gpa-chart .dot:hover { fill: var(--cyan); cursor: pointer; }
+  .chart-tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: var(--bg-alt);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text);
+    opacity: 0;
+    transform: translate(-50%, -110%);
+    transition: opacity .12s;
+    white-space: nowrap;
+    z-index: 5;
+  }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (max-width: 640px) { .comp-grid { grid-template-columns: 1fr; } }
+  .comp-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .comp-badge .icon { color: var(--green); width: 20px; height: 20px; flex-shrink: 0; }
+  .comp-badge .icon svg { width: 100%; height: 100%; }
+  .comp-badge-text { font-size: 0.86rem; color: var(--text); line-height: 1.4; }
+  .comp-badge-text .yr {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    color: var(--text-faint);
+    margin-top: 2px;
+  }
 
   .card {
     background: var(--card);
@@ -196,21 +308,6 @@
     color: var(--text-dim);
     padding: 4px 10px;
     border-radius: 6px;
-  }
-
-  .comp-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-  .comp-list li {
-    font-family: var(--mono);
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    padding-left: 20px;
-    position: relative;
-  }
-  .comp-list li::before {
-    content: '>';
-    color: var(--green);
-    position: absolute;
-    left: 0;
   }
 
   .term-heading {
@@ -301,10 +398,30 @@
       <a class="pill" href="https://github.com/AsmiMishra" target="_blank" rel="noopener">github.com/AsmiMishra</a>
       <span class="pill" style="cursor:default;">📍 Pensacola, FL</span>
     </div>
+    <div class="stats-row">
+      <div class="stat-tile">
+        <div class="stat-value">3.64</div>
+        <div class="stat-label">Cumulative GPA</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-value">147</div>
+        <div class="stat-label">Credit Hours Earned</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-value">2</div>
+        <div class="stat-label">Peer-Reviewed Publications</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-value">7</div>
+        <div class="stat-label">Honor Roll Terms</div>
+      </div>
+    </div>
   </section>
 
   <section id="about">
-    <h2 class="section-title"><span class="num">01</span><span class="dot">/</span> about</h2>
+    <h2 class="section-title"><span class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polyline points="7 9 10 12 7 15"/><line x1="12" y1="15" x2="16" y2="15"/></svg>
+    </span><span class="num">01</span><span class="dot">/</span> about</h2>
     <p class="lead">
       I'm a double-degree student at the University of West Florida pursuing a
       B.S. in Computer Science and a B.S. in Cybersecurity, with a minor in the
@@ -318,7 +435,9 @@
   </section>
 
   <section id="education">
-    <h2 class="section-title"><span class="num">02</span><span class="dot">/</span> education</h2>
+    <h2 class="section-title"><span class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5-10-5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></svg>
+    </span><span class="num">02</span><span class="dot">/</span> education</h2>
     <div class="card">
       <div class="card-head">
         <div>
@@ -337,10 +456,55 @@
         <div class="card-date">May 2023</div>
       </div>
     </div>
+
+    <div class="card chart-card">
+      <div class="chart-title">Cumulative GPA by term — currently <span class="val">3.64</span></div>
+      <div class="chart-wrap">
+        <svg class="gpa-chart" viewBox="0 0 640 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Line chart of cumulative GPA by term, rising from 3.50 in Fall 2023 to 3.64 in Summer 2026, peaking at 3.66 in Fall 2025">
+          <line class="grid-line" x1="34" y1="174" x2="624" y2="174"/>
+          <line class="grid-line" x1="34" y1="122" x2="624" y2="122"/>
+          <line class="grid-line" x1="34" y1="70" x2="624" y2="70"/>
+          <line class="grid-line" x1="34" y1="18" x2="624" y2="18"/>
+          <text class="axis-label" x="28" y="177" text-anchor="end">3.3</text>
+          <text class="axis-label" x="28" y="125" text-anchor="end">3.5</text>
+          <text class="axis-label" x="28" y="73" text-anchor="end">3.7</text>
+          <text class="axis-label" x="28" y="21" text-anchor="end">3.9</text>
+
+          <path class="line" d="M34,122 L107.8,119.4 L181.5,116.8 L255.3,98.6 L329,103.8 L402.8,90.8 L476.5,80.4 L550.3,85.6 L624,85.6"/>
+
+          <circle class="dot" cx="34" cy="122" r="4" data-term="Fall 2023" data-gpa="3.50"><title>Fall 2023 — 3.50</title></circle>
+          <circle class="dot" cx="107.8" cy="119.4" r="4" data-term="Spring 2024" data-gpa="3.51"><title>Spring 2024 — 3.51</title></circle>
+          <circle class="dot" cx="181.5" cy="116.8" r="4" data-term="Summer 2024" data-gpa="3.52"><title>Summer 2024 — 3.52</title></circle>
+          <circle class="dot" cx="255.3" cy="98.6" r="4" data-term="Fall 2024" data-gpa="3.59"><title>Fall 2024 — 3.59</title></circle>
+          <circle class="dot" cx="329" cy="103.8" r="4" data-term="Spring 2025" data-gpa="3.57"><title>Spring 2025 — 3.57</title></circle>
+          <circle class="dot" cx="402.8" cy="90.8" r="4" data-term="Summer 2025" data-gpa="3.62"><title>Summer 2025 — 3.62</title></circle>
+          <circle class="dot" cx="476.5" cy="80.4" r="4" data-term="Fall 2025" data-gpa="3.66"><title>Fall 2025 — 3.66</title></circle>
+          <circle class="dot" cx="550.3" cy="85.6" r="4" data-term="Spring 2026" data-gpa="3.64"><title>Spring 2026 — 3.64</title></circle>
+          <circle class="dot" cx="624" cy="85.6" r="4" data-term="Summer 2026" data-gpa="3.64"><title>Summer 2026 — 3.64</title></circle>
+
+          <text class="val-label" x="34" y="108" text-anchor="start">3.50</text>
+          <text class="val-label" x="476.5" y="66" text-anchor="middle">3.66</text>
+          <text class="val-label" x="624" y="72" text-anchor="end">3.64</text>
+
+          <text class="term-label" x="34" y="192" text-anchor="start">F23</text>
+          <text class="term-label" x="107.8" y="192" text-anchor="middle">S24</text>
+          <text class="term-label" x="181.5" y="192" text-anchor="middle">Su24</text>
+          <text class="term-label" x="255.3" y="192" text-anchor="middle">F24</text>
+          <text class="term-label" x="329" y="192" text-anchor="middle">S25</text>
+          <text class="term-label" x="402.8" y="192" text-anchor="middle">Su25</text>
+          <text class="term-label" x="476.5" y="192" text-anchor="middle">F25</text>
+          <text class="term-label" x="550.3" y="192" text-anchor="middle">S26</text>
+          <text class="term-label" x="624" y="192" text-anchor="end">Su26</text>
+        </svg>
+        <div class="chart-tooltip"></div>
+      </div>
+    </div>
   </section>
 
   <section id="experience">
-    <h2 class="section-title"><span class="num">03</span><span class="dot">/</span> experience</h2>
+    <h2 class="section-title"><span class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+    </span><span class="num">03</span><span class="dot">/</span> experience</h2>
     <div class="card">
       <div class="card-head">
         <div>
@@ -356,7 +520,9 @@
   </section>
 
   <section id="projects">
-    <h2 class="section-title"><span class="num">04</span><span class="dot">/</span> projects</h2>
+    <h2 class="section-title"><span class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 9 5 12 8 15"/><polyline points="16 9 19 12 16 15"/></svg>
+    </span><span class="num">04</span><span class="dot">/</span> projects</h2>
     <div class="grid-2">
       <div class="card">
         <div class="card-title">Unsupervised Intrusion Detection Using K-Means and BIRCH Clustering</div>
@@ -370,7 +536,9 @@
   </section>
 
   <section id="publications">
-    <h2 class="section-title"><span class="num">05</span><span class="dot">/</span> publications</h2>
+    <h2 class="section-title"><span class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H20z"/></svg>
+    </span><span class="num">05</span><span class="dot">/</span> publications</h2>
     <div class="card">
       <div class="card-title">Detecting Cyber Threats in UWF-ZeekDataFall22 Using K-Means Clustering in the Big Data Environment</div>
       <div class="card-sub">Bagui, S. S.; Carvalho, G. C. S. D.; Mishra, A.; Mink, D.; Bagui, S. C.; Eager, S.</div>
@@ -384,7 +552,9 @@
   </section>
 
   <section id="skills">
-    <h2 class="section-title"><span class="num">06</span><span class="dot">/</span> skills</h2>
+    <h2 class="section-title"><span class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><circle cx="9" cy="6" r="2" fill="currentColor" stroke="none"/><line x1="4" y1="12" x2="20" y2="12"/><circle cx="16" cy="12" r="2" fill="currentColor" stroke="none"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="11" cy="18" r="2" fill="currentColor" stroke="none"/></svg>
+    </span><span class="num">06</span><span class="dot">/</span> skills</h2>
     <div class="skills-grid">
       <div class="skill-group">
         <h3>Languages</h3>
@@ -420,7 +590,9 @@
   </section>
 
   <section id="leadership">
-    <h2 class="section-title"><span class="num">07</span><span class="dot">/</span> leadership &amp; activities</h2>
+    <h2 class="section-title"><span class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3.1-6 7-6s7 2.7 7 6"/><circle cx="18" cy="9" r="2.3"/><path d="M15.5 14.2c2.9.4 5.5 2.6 5.5 5.8"/></svg>
+    </span><span class="num">07</span><span class="dot">/</span> leadership &amp; activities</h2>
     <div class="card">
       <div class="card-head">
         <div>
@@ -449,19 +621,41 @@
       <p>Organized beach cleanups, fundraising initiatives, and community events; coordinated a fundraising trivia event.</p>
     </div>
 
-    <h2 class="section-title" style="margin-top:48px;"><span class="num">08</span><span class="dot">/</span> competitions</h2>
-    <ul class="comp-list">
-      <li>Collegiate Cyber Defense Competition (CCDC)</li>
-      <li>NCL Capture The Flag — Spring 2024</li>
-      <li>NCL Capture The Flag — Fall 2024</li>
-      <li>Hivestorm Competition — Fall 2024</li>
-      <li>CyberPatriot Competition — 2017–2022</li>
-      <li>FBLA — 2nd Place, Cybersecurity, District 1 Competition (2023)</li>
-    </ul>
+    <h2 class="section-title" style="margin-top:48px;"><span class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4"/><path d="M4 4h14l-3 4 3 4H4"/></svg>
+    </span><span class="num">08</span><span class="dot">/</span> competitions</h2>
+    <div class="comp-grid">
+      <div class="comp-badge">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4"/><path d="M4 4h14l-3 4 3 4H4"/></svg></span>
+        <div class="comp-badge-text">Collegiate Cyber Defense Competition (CCDC)</div>
+      </div>
+      <div class="comp-badge">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4"/><path d="M4 4h14l-3 4 3 4H4"/></svg></span>
+        <div class="comp-badge-text">NCL Capture The Flag<span class="yr">Spring 2024</span></div>
+      </div>
+      <div class="comp-badge">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4"/><path d="M4 4h14l-3 4 3 4H4"/></svg></span>
+        <div class="comp-badge-text">NCL Capture The Flag<span class="yr">Fall 2024</span></div>
+      </div>
+      <div class="comp-badge">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4"/><path d="M4 4h14l-3 4 3 4H4"/></svg></span>
+        <div class="comp-badge-text">Hivestorm Competition<span class="yr">Fall 2024</span></div>
+      </div>
+      <div class="comp-badge">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4"/><path d="M4 4h14l-3 4 3 4H4"/></svg></span>
+        <div class="comp-badge-text">CyberPatriot Competition<span class="yr">2017–2022</span></div>
+      </div>
+      <div class="comp-badge">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4"/><path d="M4 4h14l-3 4 3 4H4"/></svg></span>
+        <div class="comp-badge-text">FBLA — 2nd Place, Cybersecurity<span class="yr">District 1 · 2023</span></div>
+      </div>
+    </div>
   </section>
 
   <section id="coursework">
-    <h2 class="section-title"><span class="num">09</span><span class="dot">/</span> coursework</h2>
+    <h2 class="section-title"><span class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg>
+    </span><span class="num">09</span><span class="dot">/</span> coursework</h2>
     <p class="lead">Completed coursework at the University of West Florida, Fall 2023 – Summer 2026.</p>
     <div class="term-grid">
       <div class="card">
@@ -560,6 +754,33 @@
   </div>
   <div class="copyright">© 2026 Asmi Mishra · built with GitHub Pages</div>
 </footer>
+
+<script>
+(function () {
+  var chart = document.querySelector('.gpa-chart');
+  var wrap = document.querySelector('.chart-wrap');
+  var tooltip = document.querySelector('.chart-tooltip');
+  if (!chart || !wrap || !tooltip) return;
+  var dots = chart.querySelectorAll('.dot');
+  for (var i = 0; i < dots.length; i++) {
+    (function (dot) {
+      dot.addEventListener('mouseenter', function () {
+        var term = dot.getAttribute('data-term');
+        var gpa = dot.getAttribute('data-gpa');
+        tooltip.textContent = term + ' — ' + gpa + ' GPA';
+        var dotRect = dot.getBoundingClientRect();
+        var wrapRect = wrap.getBoundingClientRect();
+        tooltip.style.left = (dotRect.left - wrapRect.left + dotRect.width / 2) + 'px';
+        tooltip.style.top = (dotRect.top - wrapRect.top - 6) + 'px';
+        tooltip.style.opacity = '1';
+      });
+      dot.addEventListener('mouseleave', function () {
+        tooltip.style.opacity = '0';
+      });
+    })(dots[i]);
+  }
+})();
+</script>
 
 </body>
 </html>

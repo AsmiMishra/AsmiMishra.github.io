@@ -342,6 +342,17 @@
   }
   .term-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   @media (max-width: 720px) { .term-grid { grid-template-columns: 1fr; } }
+  .term-heading .status {
+    font-size: 0.7rem;
+    color: var(--cyan);
+    border: 1px solid var(--card-border);
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .course-grade.ip { color: var(--cyan); }
 
   footer {
     padding: 56px 24px 64px;
@@ -661,7 +672,7 @@
     <h2 class="section-title"><span class="icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg>
     </span><span class="num">09</span><span class="dot">/</span> coursework</h2>
-    <p class="lead">Completed coursework at the University of West Florida, Fall 2023 – Summer 2026.</p>
+    <p class="lead">Coursework at the University of West Florida, Fall 2023 – present.</p>
     <div class="term-grid">
       <div class="card">
         <div class="term-heading">Fall 2023</div>
@@ -742,6 +753,16 @@
         <div class="course-list">
           <div class="course-row"><span class="course-code">CNT 4403</span><span class="course-name">Computer &amp; Network Security</span><span class="course-grade">B+</span></div>
           <div class="course-row"><span class="course-code">CTS 4348</span><span class="course-name">Linux System Administration</span><span class="course-grade">A</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="term-heading">Fall 2026<span class="status">In Progress</span></div>
+        <div class="course-list">
+          <div class="course-row"><span class="course-code">CAP 4136</span><span class="course-name">Malware Analysis</span><span class="course-grade ip">IP</span></div>
+          <div class="course-row"><span class="course-code">CEN 4078</span><span class="course-name">Secure Software Development</span><span class="course-grade ip">IP</span></div>
+          <div class="course-row"><span class="course-code">CIS 2530</span><span class="course-name">Introduction to Cybersecurity</span><span class="course-grade ip">IP</span></div>
+          <div class="course-row"><span class="course-code">CIS 4221</span><span class="course-name">Penetration Testing with AI for Security Assessments</span><span class="course-grade ip">IP</span></div>
+          <div class="course-row"><span class="course-code">MAS 3105</span><span class="course-name">Linear Algebra</span><span class="course-grade ip">IP</span></div>
         </div>
       </div>
     </div>

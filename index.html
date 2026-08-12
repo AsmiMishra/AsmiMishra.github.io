@@ -213,6 +213,39 @@
     left: 0;
   }
 
+  .term-heading {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    color: var(--cyan);
+    margin: 0 0 14px;
+  }
+  .course-list { display: grid; gap: 2px; }
+  .course-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    font-size: 0.88rem;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .course-row:last-child { border-bottom: none; }
+  .course-code {
+    font-family: var(--mono);
+    color: var(--green);
+    width: 78px;
+    flex-shrink: 0;
+  }
+  .course-name { color: var(--text-dim); flex: 1; }
+  .course-grade {
+    font-family: var(--mono);
+    color: var(--text-faint);
+    width: 26px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .term-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 720px) { .term-grid { grid-template-columns: 1fr; } }
+
   footer {
     padding: 56px 24px 64px;
     text-align: center;
@@ -245,6 +278,7 @@
       <a href="#publications">publications</a>
       <a href="#skills">skills</a>
       <a href="#leadership">leadership</a>
+      <a href="#coursework">coursework</a>
       <a href="#contact">contact</a>
     </nav>
   </div>
@@ -417,13 +451,101 @@
 
     <h2 class="section-title" style="margin-top:48px;"><span class="num">08</span><span class="dot">/</span> competitions</h2>
     <ul class="comp-list">
-      <li>Collegiate Cyber Defense Competition (CCDC) — Spring 2025</li>
+      <li>Collegiate Cyber Defense Competition (CCDC)</li>
       <li>NCL Capture The Flag — Spring 2024</li>
       <li>NCL Capture The Flag — Fall 2024</li>
       <li>Hivestorm Competition — Fall 2024</li>
       <li>CyberPatriot Competition — 2017–2022</li>
       <li>FBLA — 2nd Place, Cybersecurity, District 1 Competition (2023)</li>
     </ul>
+  </section>
+
+  <section id="coursework">
+    <h2 class="section-title"><span class="num">09</span><span class="dot">/</span> coursework</h2>
+    <p class="lead">Completed coursework at the University of West Florida, Fall 2023 – Summer 2026.</p>
+    <div class="term-grid">
+      <div class="card">
+        <div class="term-heading">Fall 2023</div>
+        <div class="course-list">
+          <div class="course-row"><span class="course-code">ANT 2000</span><span class="course-name">Intro Anthropology</span><span class="course-grade">A</span></div>
+          <div class="course-row"><span class="course-code">COP 2334</span><span class="course-name">C++ Programming</span><span class="course-grade">A-</span></div>
+          <div class="course-row"><span class="course-code">IDH 1040</span><span class="course-name">Honors Core: Humanities</span><span class="course-grade">B</span></div>
+          <div class="course-row"><span class="course-code">STA 2023</span><span class="course-name">Elements of Statistics</span><span class="course-grade">B+</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="term-heading">Spring 2024</div>
+        <div class="course-list">
+          <div class="course-row"><span class="course-code">AMH 2020</span><span class="course-name">U.S. Since 1877</span><span class="course-grade">A</span></div>
+          <div class="course-row"><span class="course-code">COP 3014</span><span class="course-name">Algorithm and Program Design</span><span class="course-grade">B-</span></div>
+          <div class="course-row"><span class="course-code">ENC 1102</span><span class="course-name">English Composition II</span><span class="course-grade">A-</span></div>
+          <div class="course-row"><span class="course-code">IDH 1043</span><span class="course-name">Honors Core: Natural Sciences</span><span class="course-grade">B</span></div>
+          <div class="course-row"><span class="course-code">MAC 1147</span><span class="course-name">Precalculus with Trigonometry</span><span class="course-grade">A</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="term-heading">Summer 2024</div>
+        <div class="course-list">
+          <div class="course-row"><span class="course-code">COP 3022</span><span class="course-name">Intermediate Programming</span><span class="course-grade">B</span></div>
+          <div class="course-row"><span class="course-code">MAC 2311</span><span class="course-name">Analytic Geometry &amp; Calculus I</span><span class="course-grade">A</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="term-heading">Fall 2024</div>
+        <div class="course-list">
+          <div class="course-row"><span class="course-code">COP 3530</span><span class="course-name">Data Structures &amp; Algorithms I</span><span class="course-grade">A</span></div>
+          <div class="course-row"><span class="course-code">COP 4710</span><span class="course-name">Database Systems</span><span class="course-grade">A</span></div>
+          <div class="course-row"><span class="course-code">COT 3100</span><span class="course-name">Discrete Structures</span><span class="course-grade">A</span></div>
+          <div class="course-row"><span class="course-code">IDH 3701</span><span class="course-name">Service Learning &amp; E-Portfolio</span><span class="course-grade">A-</span></div>
+          <div class="course-row"><span class="course-code">MAC 2312</span><span class="course-name">Analytic Geometry &amp; Calculus II</span><span class="course-grade">B</span></div>
+          <div class="course-row"><span class="course-code">MCB 1000</span><span class="course-name">Fundamentals of Microbiology</span><span class="course-grade">A</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="term-heading">Spring 2025</div>
+        <div class="course-list">
+          <div class="course-row"><span class="course-code">CDA 3101</span><span class="course-name">Intro to Computer Organization</span><span class="course-grade">A</span></div>
+          <div class="course-row"><span class="course-code">CEN 3031</span><span class="course-name">Software Engineering I</span><span class="course-grade">B</span></div>
+          <div class="course-row"><span class="course-code">IDH 4032</span><span class="course-name">Honors Seminar: Medical Humanities</span><span class="course-grade">A</span></div>
+          <div class="course-row"><span class="course-code">PHY 2048</span><span class="course-name">Calculus-Based Physics I</span><span class="course-grade">B-</span></div>
+          <div class="course-row"><span class="course-code">PHY 2048L</span><span class="course-name">Calculus-Based Physics I Lab</span><span class="course-grade">A</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="term-heading">Summer 2025</div>
+        <div class="course-list">
+          <div class="course-row"><span class="course-code">CAP 4990</span><span class="course-name">AI and ML in Cybersecurity</span><span class="course-grade">A</span></div>
+          <div class="course-row"><span class="course-code">CIS 4368</span><span class="course-name">Database Security</span><span class="course-grade">A</span></div>
+          <div class="course-row"><span class="course-code">STA 4321</span><span class="course-name">Intro to Mathematical Statistics I</span><span class="course-grade">A</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="term-heading">Fall 2025</div>
+        <div class="course-list">
+          <div class="course-row"><span class="course-code">COP 4027</span><span class="course-name">Advanced Computer Programming</span><span class="course-grade">A-</span></div>
+          <div class="course-row"><span class="course-code">COP 4534</span><span class="course-name">Data Structures &amp; Algorithms II</span><span class="course-grade">A</span></div>
+          <div class="course-row"><span class="course-code">COP 4634</span><span class="course-name">Systems &amp; Networks I</span><span class="course-grade">A</span></div>
+          <div class="course-row"><span class="course-code">IDH 4032</span><span class="course-name">Honors Seminar: Topic III</span><span class="course-grade">A</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="term-heading">Spring 2026</div>
+        <div class="course-list">
+          <div class="course-row"><span class="course-code">CNT 4007</span><span class="course-name">Network Fundamentals</span><span class="course-grade">B-</span></div>
+          <div class="course-row"><span class="course-code">COP 4610</span><span class="course-name">Operating Systems Fundamentals</span><span class="course-grade">A</span></div>
+          <div class="course-row"><span class="course-code">COP 4635</span><span class="course-name">Systems &amp; Networks II</span><span class="course-grade">A</span></div>
+          <div class="course-row"><span class="course-code">PHY 2049</span><span class="course-name">Calculus-Based Physics II</span><span class="course-grade">B</span></div>
+          <div class="course-row"><span class="course-code">PHY 2049L</span><span class="course-name">Calculus-Based Physics II Lab</span><span class="course-grade">A</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="term-heading">Summer 2026</div>
+        <div class="course-list">
+          <div class="course-row"><span class="course-code">CNT 4403</span><span class="course-name">Computer &amp; Network Security</span><span class="course-grade">B+</span></div>
+          <div class="course-row"><span class="course-code">CTS 4348</span><span class="course-name">Linux System Administration</span><span class="course-grade">A</span></div>
+        </div>
+      </div>
+    </div>
   </section>
 
 </main>

@@ -548,6 +548,14 @@
         </ul>
         <p><a href="https://doi.org/10.3390/a19080653" target="_blank" rel="noopener">View published paper →</a></p>
       </div>
+      <div class="card" style="grid-column: 1 / -1;">
+        <div class="card-title">Purple-Team Detection Lab — Zeek vs. MITRE ATT&amp;CK</div>
+        <p>Built a self-contained, network-isolated VirtualBox lab (Kali attacker, Ubuntu target running Zeek 9.0) to measure how much of a passive network sensor's coverage holds up against real MITRE ATT&amp;CK techniques — and wrote a custom log parser to detect scans, exfiltration, and SSH activity from the raw Zeek logs.</p>
+        <ul>
+          <li>Detected <strong style="color:var(--text);">5 of 7</strong> MITRE ATT&amp;CK techniques via passive network monitoring alone, and diagnosed the exact mechanism behind both misses — a sub-threshold slow scan that evaded burst detection, and an ARP-based host sweep invisible below the TCP layer.</li>
+        </ul>
+        <p><a href="https://github.com/AsmiMishra/purple-team-detection-lab" target="_blank" rel="noopener">View repository →</a></p>
+      </div>
     </div>
   </section>
 

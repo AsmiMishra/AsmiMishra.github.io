@@ -342,6 +342,21 @@
   }
   .term-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   @media (max-width: 720px) { .term-grid { grid-template-columns: 1fr; } }
+
+  .volunteer-card { display: flex; gap: 20px; align-items: flex-start; }
+  .volunteer-img {
+    width: 220px;
+    height: 124px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    flex-shrink: 0;
+  }
+  .volunteer-body { flex: 1; min-width: 0; }
+  @media (max-width: 640px) {
+    .volunteer-card { flex-direction: column; }
+    .volunteer-img { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+  }
   .term-heading .status {
     font-size: 0.7rem;
     color: var(--cyan);
@@ -386,6 +401,7 @@
       <a href="#publications">publications</a>
       <a href="#skills">skills</a>
       <a href="#leadership">leadership</a>
+      <a href="#volunteer">volunteer</a>
       <a href="#coursework">coursework</a>
       <a href="#contact">contact</a>
     </nav>
@@ -676,15 +692,6 @@
       </div>
       <p>Led event planning, communications, and social media; organized cultural and networking events.</p>
     </div>
-    <div class="card">
-      <div class="card-head">
-        <div>
-          <div class="card-title">Youth Advisory Council Member</div>
-          <div class="card-sub">Keep Pensacola Beautiful</div>
-        </div>
-      </div>
-      <p>Organized beach cleanups, fundraising initiatives, and community events; coordinated a fundraising trivia event.</p>
-    </div>
 
     <h2 class="section-title" style="margin-top:48px;"><span class="icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4"/><path d="M4 4h14l-3 4 3 4H4"/></svg>
@@ -721,10 +728,70 @@
     </div>
   </section>
 
+  <section id="volunteer">
+    <h2 class="section-title"><span class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+    </span><span class="num">09</span><span class="dot">/</span> volunteer experience</h2>
+
+    <div class="card volunteer-card">
+      <img class="volunteer-img" src="images/volunteer-kpb.jpg" alt="Fundraising Tree-Hugger Trivia Night hosted by the Keep Pensacola Beautiful Youth Advisory Council">
+      <div class="volunteer-body">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Youth Advisory Council Member</div>
+            <div class="card-sub">Keep Pensacola Beautiful</div>
+          </div>
+          <div class="card-date">2021 – 2022</div>
+        </div>
+        <p>Completed hands-on service projects to preserve the community's natural beauty: organized beach cleanups, led a year-long project hosting a Tree Hugger Trivia fundraiser, painted over graffiti on the Bay Bluffs boardwalk, and supported the International Coastal Cleanup.</p>
+      </div>
+    </div>
+
+    <div class="card volunteer-card">
+      <img class="volunteer-img" src="images/volunteer-buildabed.jpg" alt="Volunteering at a Sleep in Heavenly Peace Build a Bed event">
+      <div class="volunteer-body">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Volunteer</div>
+            <div class="card-sub">Build a Bed — Sleep in Heavenly Peace</div>
+          </div>
+          <div class="card-date">March 2021</div>
+        </div>
+        <p>Helped the nonprofit build beds for kids in Pensacola who don't have their own.</p>
+      </div>
+    </div>
+
+    <div class="card volunteer-card">
+      <img class="volunteer-img" src="images/volunteer-manna.jpg" alt="Donated food collected for the Manna Food Drive">
+      <div class="volunteer-body">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Organizer</div>
+            <div class="card-sub">Manna Food Drive</div>
+          </div>
+        </div>
+        <p>During quarantine, organized a neighborhood food drive in partnership with Manna Food Pantries — created and distributed flyers, then collected donations a week later, raising <strong style="color:var(--text);">104 pounds of food</strong>.</p>
+      </div>
+    </div>
+
+    <div class="card volunteer-card">
+      <img class="volunteer-img" src="images/volunteer-messhall.jpg" alt="Pensacola MESS Hall science museum building">
+      <div class="volunteer-body">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Summer Camp Volunteer</div>
+            <div class="card-sub">Pensacola MESS Hall</div>
+          </div>
+        </div>
+        <p>Supported museum and camp staff in a summer program engaging younger students with math, engineering, and science activities — assisted with daily tasks, led a hands-on activity, and interacted with museum visitors.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="coursework">
     <h2 class="section-title"><span class="icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg>
-    </span><span class="num">09</span><span class="dot">/</span> coursework</h2>
+    </span><span class="num">10</span><span class="dot">/</span> coursework</h2>
     <p class="lead">Coursework at the University of West Florida, Fall 2023 – present.</p>
     <div class="term-grid">
       <div class="card">
